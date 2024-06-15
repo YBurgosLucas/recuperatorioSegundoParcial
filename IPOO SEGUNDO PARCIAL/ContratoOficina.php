@@ -8,9 +8,5 @@
             $cad=parent::__toString();
             return $cad;
         }
-        public function calcularImporte(){
-            $importefinal=parent::calcularImporte();
 
-            return $importefinal;
-        }
     }

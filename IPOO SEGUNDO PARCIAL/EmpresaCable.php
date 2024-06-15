@@ -37,7 +37,7 @@ class EmpresaCable{
         return $cad;
     }
     public function __toString(){
-        $cad="COLECCION DE PLANES:".$this->retornarContratos().
+        $cad="COLECCION DE PLANES:".$this->retornarPlanes().
              "\nCOLECCION DE CONTRATOS REALIZADOS POR LA EMPRESA:\n".$this->retornarContratos();
         return $cad;
     }

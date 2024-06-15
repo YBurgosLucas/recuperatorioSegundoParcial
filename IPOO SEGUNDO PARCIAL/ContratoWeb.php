@@ -1,4 +1,5 @@
 <?php
+
     class ContratoWeb extends Contrato{
         private $porcentajeDescuento;
         

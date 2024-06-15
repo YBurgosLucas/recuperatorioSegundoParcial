@@ -3,6 +3,7 @@
  
 Adquirir un plan implica un contrato. Los contratos tienen la fecha de inicio, la fecha de vencimiento, el plan, un estado (al día, moroso, suspendido), un costo, si se renueva o no y una referencia al cliente que adquirió el contrato.
 */
+
 class Contrato{
     
     //ATRIBUTOS
@@ -29,65 +30,65 @@ class Contrato{
     }
 
 
-         public function getFechaInicio(){
+     public function getFechaInicio(){
         return $this->fechaInicio;
-    }
+     }
 
     public function setFechaInicio($fechaInicio){
          $this->fechaInicio= $fechaInicio;
-    }
+     }
 
-        public function getFechaVencimiento(){
+     public function getFechaVencimiento(){
         return $this->fechaVencimiento;
-    }
+     }
 
-    public function setFechaVencimiento($fechaVencimiento){
+     public function setFechaVencimiento($fechaVencimiento){
          $this->fechaVencimiento= $fechaVencimiento;
-    }
+     }
 
 
-            public function getObjPlan(){
+     public function getObjPlan(){
         return $this->objPlan;
-    }
+     }
 
-    public function setObjPlan($objPlan){
+     public function setObjPlan($objPlan){
          $this->objPlan= $objPlan;
-    }
+     }
 
-   public function getEstado(){
+     public function getEstado(){
         return $this->estado;
-    }
+     }
 
-    public function setEstado($estado){
+     public function setEstado($estado){
          $this->estado= $estado;
-    }
+     }
 
- public function getCosto(){
+     public function getCosto(){
         return $this->costo;
-    }
+     }
 
-    public function setCosto($costo){
+     public function setCosto($costo){
          $this->costo= $costo;
-    }
+     }
 
-public function getSeRennueva(){
+     public function getSeRennueva(){
         return $this->seRennueva;
     }
 
-    public function setSeRennueva($seRennueva){
+     public function setSeRennueva($seRennueva){
          $this->seRennueva= $seRennueva;
-    }
+     }
 
 
-public function getObjCliente(){
+     public function getObjCliente(){
         return $this->objCliente;
-    }
+     }
 
-    public function setObjCliente($objCliente){
+     public function setObjCliente($objCliente){
          $this->objCliente= $objCliente;
-    }
+     }
 
-public function __toString(){
+     public function __toString(){
         //string $cadena
         $cadena = "Fecha inicio: ".$this->getFechaInicio()."\n";
         $cadena = "Fecha Vencimiento: ".$this->getFechaVencimiento()."\n";
@@ -106,13 +107,11 @@ contrario. (Puede utilizar la Clase DateTime de PHP y la función Diff que calcu
 fechas)
  */
 public function diasContratoVencido(){
-     $fechaFin=  $this->getFechaVencimiento();
-     $fechaActual =date("d-m-y"); 
+     $fechaFin= new DateTime($this->getFechaVencimiento());
+     $fechaActual = new DateTime();
      $diferencia = 0;
-     
-     if ($fechaActual > $fechaFin) { 
-         $diferencia = $fechaFin->diff($fechaActual); 
-     } 
+     $diferencia = $fechaFin->diff($fechaActual); 
+
    return $diferencia ;
 
      }  
@@ -134,7 +133,7 @@ public function actualizarEstadoContrato(){
 /* Implementar y redefinir el método calcularImporte () que retorna el importe final correspondiente al
 importe del contrato */
 public function calcularImporte(){
-
+     $importeCanal=0;
      $importePlan=$this->getObjPlan()->getImporte();
      $colCanales=$this->getObjPlan()->getColCanales();
      foreach($colCanales as $unCanal){

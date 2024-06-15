@@ -4,7 +4,7 @@
     include_once "Contrato.php";
     include_once "ContratoWeb.php";
     include_once "ContratoOficina.php";
-    include_once "EmpresaCable,php";
+    include_once "EmpresaCable.php";
     include_once "Plan.php";
 
     //$colPlanes, $colContratosRealizadosEmpresa
@@ -17,10 +17,14 @@
     $objCanal2= new Canal("noticias", 100, "no", "no");
     $objCanal3= new Canal("musical", 100, "si", "si");
     
-    //$codigo, $colCanales, $importe
     $colCanales=[$objCanal1, $objCanal2, $objCanal3];
+
+    //$codigo, $colCanales, $importe
+    
     $objPlan1= new Plan(111, $colCanales , 500);
-    $objPlan2= new Plan(100, $colCanales , 500);
+    
+     $objPlan2= new Plan(100, $colCanales , 500);
+
     $colPlanes=[$objPlan1, $objPlan2];
     $objEmpresaCable->setColPlanes($colPlanes);
 
@@ -28,10 +32,10 @@
     $objCliente= new Cliente( 12345, 123457, "santa fe 200");
 
     //$fechaInicio, $fechaVencimiento, $objPlan,$costo,$seRennueva,$objCliente
-    $fechainicio=date("d-m-y");
+    $fechaInicio=date("d-m-y");
     $fechaVencimiento="12-07-2024";
     $objContrato1= new ContratoOficina($fechaInicio,$fechaVencimiento, $objPlan1, 200, 0, $objCliente );
-    $objContrato2= new ContratoWeb($fechaInicio,$fechaVencimiento, $objCanal1, 200, 0, $objCliente );
+    $objContrato2= new ContratoWeb($fechaInicio,$fechaVencimiento, $objPlan1, 200, 0, $objCliente );
     $objContrato3= new ContratoWeb($fechaInicio,$fechaVencimiento, $objPlan2, 200, 0, $objCliente);
     
     // invocamos al metodo calcularimporte
@@ -40,7 +44,7 @@
 
     $importe=$objContrato2->calcularImporte();
     echo "el Contrato 2 tiene un importe del $".$importe."\n";
-
+ 
     $importe=$objContrato3->calcularImporte();
     echo "el Contrato 3 tiene un importe del $".$importe."\n";
 
@@ -58,3 +62,5 @@
 
     //invocamos al metodo retornar importe contratos
     $objEmpresaCable->retornarImporteContratos(111);
+
+    echo $objEmpresaCable."\n";
